@@ -1,4 +1,6 @@
 Project::Application.routes.draw do
+  devise_for :users
+
   match '/about' => 'pages#about'
   
   root :to => 'pages#home'
