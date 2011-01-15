@@ -14,6 +14,18 @@ class WordsController < ApplicationController
 
     if @word.save
       redirect_to new_word_meaning_path(@word), :notice => "Word was successfully created."
+      
+      @word.word.each_char do |c|
+        if KLookup::Lookup::Kanji.exist?(c)
+          kanji = @word.kanjis.new(:kanji => c)
+          if kanji.save
+            #
+          else
+            #
+          end
+        end
+      end
+      
     else
       render :new
     end

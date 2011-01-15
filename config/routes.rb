@@ -10,6 +10,8 @@ Project::Application.routes.draw do
     end
   end
   
+  resources :kanjis
+  
   root :to => 'pages#home'
   
   # The priority is based upon order of creation:

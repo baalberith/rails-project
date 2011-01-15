@@ -1,0 +1,5 @@
+%p
+  = kanji.kanji
+  
+  - for meaning in KLookup::Lookup::Kanji.new(kanji.kanji).meaning
+    %li= meaning
