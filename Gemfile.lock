@@ -38,6 +38,10 @@ GEM
       abstract (>= 1.0.0)
     haml (3.0.25)
     i18n (0.5.0)
+    jquery-rails (0.2.5)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
+    json_pure (1.4.6)
     klookup (0.4)
     mail (2.2.13)
       activesupport (>= 2.3.6)
@@ -45,6 +49,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    on_the_spot (0.0.5)
+      json_pure (>= 1.4.6)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -79,6 +85,8 @@ PLATFORMS
 DEPENDENCIES
   devise
   haml
+  jquery-rails
   klookup
+  on_the_spot
   rails (= 3.0.3)
   sqlite3-ruby

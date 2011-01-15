@@ -3,6 +3,13 @@ Project::Application.routes.draw do
 
   match '/about' => 'pages#about'
   
+  resources :words do
+    resources :meanings  
+    collection do
+      post :update_attribute_on_the_spot
+    end
+  end
+  
   root :to => 'pages#home'
   
   # The priority is based upon order of creation:

@@ -1,0 +1,11 @@
+%h2 New meaning
+
+= form_for([@word, @meaning]) do |f|
+  %p
+    = f.label :meaning
+    %br
+    = f.text_field :meaning
+
+  %p= f.submit
+
+= link_to "Back", words_path

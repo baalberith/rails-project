@@ -1,0 +1,13 @@
+%p{:class => "word_#{word.id}"}
+  = word.word
+  (
+  = on_the_spot_edit word, :reading
+  )
+
+  %ul
+    - for meaning in word.meanings
+      = render :partial => 'meanings/meaning', :locals => { :meaning => meaning, :word => word }
+    
+%p
+  = link_to "Add meaning", new_word_meaning_path(word)
+  = link_to "Delete word", word, :confirm => "Are you sure?", :method => :delete
