@@ -5,6 +5,10 @@ class WordsController < ApplicationController
     @words = Word.all
   end
   
+  def show
+    @word = Word.find(params[:id])
+  end
+  
   def new
     @word = Word.new
   end
@@ -17,12 +21,11 @@ class WordsController < ApplicationController
       
       @word.word.each_char do |c|
         if KLookup::Lookup::Kanji.exist?(c)
-          kanji = @word.kanjis.new(:kanji => c)
-          if kanji.save
-            #
-          else
-            #
+          @kanji = @word.kanjis.new(:kanji => c)
+          unless @kanji.save
+            @kanji = Kanji.find_by_kanji(c)
           end
+          @word.kanji_word_links.create(:kanji_id => @kanji.id)
         end
       end
       

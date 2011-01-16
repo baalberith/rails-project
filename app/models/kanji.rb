@@ -1,5 +1,6 @@
 class Kanji < ActiveRecord::Base
-  has_and_belongs_to_many :words
+  has_many :kanji_word_links
+  has_many :words, :through => :kanji_word_links
   
   validates :kanji, :uniqueness => true
 end

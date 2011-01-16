@@ -1,5 +1,15 @@
 %p
   = kanji.kanji
+  = image_tag "kanjis/#{kanji.kanji}.png"
   
-  - for meaning in KLookup::Lookup::Kanji.new(kanji.kanji).meaning
-    %li= meaning
+  %p 
+    Meanings
+    %ul
+      - for meaning in KLookup::Lookup::Kanji.new(kanji.kanji).meaning
+        %li= meaning
+
+  %p 
+    Examples
+    %ul
+      - for word in kanji.words
+        %li= link_to word.word, word_path(word)

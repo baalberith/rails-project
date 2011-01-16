@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110115225805) do
+ActiveRecord::Schema.define(:version => 20110116135634) do
+
+  create_table "kanji_word_links", :force => true do |t|
+    t.integer  "kanji_id"
+    t.integer  "word_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "kanjis", :force => true do |t|
     t.string   "kanji"
@@ -18,9 +25,17 @@ ActiveRecord::Schema.define(:version => 20110115225805) do
     t.datetime "updated_at"
   end
 
-  create_table "kanjis_words", :id => false, :force => true do |t|
-    t.integer "kanji_id"
-    t.integer "word_id"
+  create_table "list_meaning_links", :force => true do |t|
+    t.integer  "list_id"
+    t.integer  "meaning_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lists", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "meanings", :force => true do |t|

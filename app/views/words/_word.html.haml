@@ -1,5 +1,9 @@
 %p
-  = word.word
+  - word.word.each_char do |c|
+    - if KLookup::Lookup::Kanji.exist?(c)
+      = link_to c, kanji_path(Kanji.find_by_kanji(c))
+    - else
+      = c
   (
   = on_the_spot_edit word, :reading
   )

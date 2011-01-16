@@ -1,6 +1,8 @@
 class Word < ActiveRecord::Base
   has_many :meanings, :dependent => :destroy  
-  has_and_belongs_to_many :kanjis
+  
+  has_many :kanji_word_links, :dependent => :destroy  
+  has_many :kanjis, :through => :kanji_word_links
   
   validates :word, 
     :uniqueness => { :case_sensitive => false }, 
