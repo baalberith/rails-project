@@ -5,7 +5,10 @@
     - else
       = c
   (
-  = on_the_spot_edit word, :reading
+  - if user_signed_in?
+    = on_the_spot_edit word, :reading, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit reading"
+  - else
+    = word.reading
   )
 
   %ul
@@ -13,5 +16,5 @@
       = render :partial => 'meanings/meaning', :locals => { :meaning => meaning, :word => word }
     
 %p
-  = link_to "Add meaning", new_word_meaning_path(word)
-  = link_to "Delete word", word, :confirm => "Are you sure?", :method => :delete
+  = link_to "Add meaning", new_word_meaning_path(word) if user_signed_in?
+  = link_to "Delete word", word, :confirm => "Are you sure?", :method => :delete if admin_signed_in?

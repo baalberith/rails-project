@@ -11,6 +11,7 @@ Project::Application.routes.draw do
   end
   
   resources :kanjis
+  resources :lists
   
   root :to => 'pages#home'
   

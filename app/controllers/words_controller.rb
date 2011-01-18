@@ -1,6 +1,8 @@
 class WordsController < ApplicationController
   can_edit_on_the_spot
   
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   def index
     @words = Word.all
   end
@@ -36,7 +38,6 @@ class WordsController < ApplicationController
   
   def destroy
     @word = Word.destroy(params[:id])
-    
     redirect_to words_path, :notice => "Word was successfully deleted."
   end
 end

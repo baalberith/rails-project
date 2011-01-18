@@ -1,6 +1,8 @@
 class MeaningsController < ApplicationController
   can_edit_on_the_spot
   
+  before_filter :authenticate_user!
+  
   def new
     @word = Word.find(params[:word_id])
     @meaning = @word.meanings.new
