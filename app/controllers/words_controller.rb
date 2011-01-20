@@ -2,6 +2,7 @@ class WordsController < ApplicationController
   can_edit_on_the_spot
   
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_admin!, :only => [:destroy]
   
   def index
     @words = Word.all
@@ -40,4 +41,9 @@ class WordsController < ApplicationController
     @word = Word.destroy(params[:id])
     redirect_to words_path, :notice => "Word was successfully deleted."
   end
+  
+  private
+    def authenticate_admin!
+      redirect_to words_path, :alert => "You need to sign in as admin user." unless current_user.admin?
+    end
 end

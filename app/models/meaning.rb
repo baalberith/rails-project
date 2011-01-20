@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20110116164316
+#
+# Table name: meanings
+#
+#  id         :integer         not null, primary key
+#  meaning    :string(255)
+#  word_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Meaning < ActiveRecord::Base
   belongs_to :word
   

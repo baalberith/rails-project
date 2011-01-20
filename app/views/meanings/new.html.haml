@@ -1,6 +1,8 @@
 %h2 New meaning
 
 = form_for([@word, @meaning]) do |f|
+  = render 'shared/errors', :target => @meaning
+
   %p
     = f.label :meaning
     %br

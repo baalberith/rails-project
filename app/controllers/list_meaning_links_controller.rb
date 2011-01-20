@@ -1,0 +1,2 @@
+class ListMeaningLinksController < ApplicationController
+end

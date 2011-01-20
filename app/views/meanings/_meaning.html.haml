@@ -4,3 +4,4 @@
   - else
     = meaning.meaning
   = link_to "Delete meaning", [word, meaning], :confirm => "Are you sure?", :method => :delete if admin_signed_in?
+  = render 'shared/add_to_list_form'

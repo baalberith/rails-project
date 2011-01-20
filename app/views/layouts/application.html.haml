@@ -15,8 +15,10 @@
       = link_to "Words", words_path
       = link_to "Kanjis", kanjis_path
       - if user_signed_in?  
+        = link_to "My Lists", user_lists_path(current_user)
         = link_to "My Account", edit_user_registration_path(current_user)
         = link_to "Logout", destroy_user_session_path 
+        = "(#{current_user.name})"
       - else
         = link_to "Login", new_user_session_path
 

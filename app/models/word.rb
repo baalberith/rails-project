@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20110116164316
+#
+# Table name: words
+#
+#  id         :integer         not null, primary key
+#  word       :string(255)
+#  reading    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Word < ActiveRecord::Base
   has_many :meanings, :dependent => :destroy  
   

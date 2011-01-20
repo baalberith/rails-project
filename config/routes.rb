@@ -3,15 +3,24 @@ Project::Application.routes.draw do
 
   match '/about' => 'pages#about'
   
+  resources :users do
+    resources :lists do
+      member do
+        post :select
+      end
+    end
+  end
+  
   resources :words do
-    resources :meanings  
+    resources :meanings
     collection do
       post :update_attribute_on_the_spot
     end
   end
   
   resources :kanjis
-  resources :lists
+  
+  resources :list_meaning_links
   
   root :to => 'pages#home'
   

@@ -35,3 +35,7 @@ gem 'devise'
 gem 'klookup'
 gem 'jquery-rails'
 gem 'on_the_spot'
+
+group :development do
+  gem 'annotate-models'
+end
