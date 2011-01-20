@@ -13,4 +13,6 @@
 class ListMeaningLink < ActiveRecord::Base
   belongs_to :list
   belongs_to :meaning
+  
+  validates :meaning_id, :uniqueness => { :case_sensitive => false, :scope => :list_id }
 end

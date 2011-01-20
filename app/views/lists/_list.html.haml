@@ -1,3 +1,9 @@
-= form_tag select_user_list_path(list.user_id, list), :method => "post"
-  = radio_button_tag(:list, "list")
-  = label_tag(:list, list.name)
+-# %p
+-#   = radio_button_tag(:list_id, list.id, current_list == list ? true : false)
+-#   = label_tag :list_id, "#{list.name}: #{list.description}"
+
+%p
+  = "#{list.name}: #{list.description}"
+  = link_to "Select", select_user_list_path(list.user, list)
+  - for meaning in list.meanings
+    = meaning.meaning

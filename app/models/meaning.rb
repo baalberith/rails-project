@@ -16,5 +16,5 @@ class Meaning < ActiveRecord::Base
   has_many :list_meaning_links, :dependent => :destroy
   has_many :lists, :through => :list_meaning_links
   
-  validates :meaning, :presence => true, :uniqueness => { :scope => :word_id }
+  validates :meaning, :presence => true, :uniqueness => { :case_sensitive => false, :scope => :word_id }
 end

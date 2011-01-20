@@ -6,13 +6,20 @@ Project::Application.routes.draw do
   resources :users do
     resources :lists do
       member do
-        post :select
+        get :select
       end
+#       collection do
+#         post :select
+#       end
     end
   end
   
   resources :words do
-    resources :meanings
+    resources :meanings do
+      member do
+        get :add
+      end
+    end
     collection do
       post :update_attribute_on_the_spot
     end

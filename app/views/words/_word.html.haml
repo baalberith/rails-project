@@ -12,8 +12,7 @@
   )
 
   %ul
-    - for meaning in word.meanings
-      = render :partial => 'meanings/meaning', :locals => { :meaning => meaning, :word => word }
+    = render word.meanings
     
 %p
   = link_to "Add meaning", new_word_meaning_path(word) if user_signed_in?

@@ -21,17 +21,7 @@ class WordsController < ApplicationController
 
     if @word.save
       redirect_to new_word_meaning_path(@word), :notice => "Word was successfully created."
-      
-      @word.word.each_char do |c|
-        if KLookup::Lookup::Kanji.exist?(c)
-          @kanji = @word.kanjis.new(:kanji => c)
-          unless @kanji.save
-            @kanji = Kanji.find_by_kanji(c)
-          end
-          @word.kanji_word_links.create(:kanji_id => @kanji.id)
-        end
-      end
-      
+      create_word_kanjis(@word)
     else
       render :new
     end
@@ -43,7 +33,20 @@ class WordsController < ApplicationController
   end
   
   private
+  
     def authenticate_admin!
       redirect_to words_path, :alert => "You need to sign in as admin user." unless current_user.admin?
+    end
+    
+    def create_word_kanjis(word)
+      word.word.each_char do |c|
+        if KLookup::Lookup::Kanji.exist?(c)
+          kanji = word.kanjis.new(:kanji => c)
+          unless kanji.save
+            kanji = Kanji.find_by_kanji(c)
+          end
+          word.kanji_word_links.create(:kanji_id => kanji.id)
+        end
+      end
     end
 end

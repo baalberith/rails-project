@@ -3,5 +3,5 @@
     = on_the_spot_edit meaning, :meaning, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit meaning"
   - else
     = meaning.meaning
-  = link_to "Delete meaning", [word, meaning], :confirm => "Are you sure?", :method => :delete if admin_signed_in?
-  = render 'shared/add_to_list_form'
+  = link_to "Add to list", add_word_meaning_path(meaning.word, meaning)
+  = link_to "Delete meaning", [meaning.word, meaning], :confirm => "Are you sure?", :method => :delete if admin_signed_in?

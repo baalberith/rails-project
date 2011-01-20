@@ -27,8 +27,19 @@ class MeaningsController < ApplicationController
     redirect_to words_path, :notice => "Meaning was successfully deleted."
   end
   
+  def add
+    list, meaning_id = current_list, params[:id].to_i
+    list.list_meaning_links.create(:meaning_id => meaning_id)
+    redirect_to words_path, :notice => "Meaning was successfully added."
+  end
+  
   private
+  
     def authenticate_admin!
       redirect_to words_path, :alert => "You need to sign in as admin user." unless current_user.admin?
+    end
+    
+    def current_list
+      session[:list]
     end
 end

@@ -1,6 +1,10 @@
 %h2 Lists index
 %h3= "user: #{@user.name}"
 
+-# = form_tag select_user_lists_path(@user), :method => "post" do
+  -# = render @lists
+  -# %p= submit_tag "Select"
+
 = render @lists
 
 = link_to "New list", new_user_list_path(@user) if current_signed_in?(@user)
