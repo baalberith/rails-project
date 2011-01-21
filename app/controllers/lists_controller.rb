@@ -7,16 +7,10 @@ class ListsController < ApplicationController
     @lists = @user.lists.all
   end
   
-#   def select
-#     @user = User.find(params[:user_id])
-#     set_current_list(params[:list_id].to_i)
-#     redirect_to user_lists_path(@user), :notice => "List was successfully selected."
-#   end
-  
-  def select
-    @user = User.find(params[:user_id])
-    set_current_list(params[:id].to_i)
-    redirect_to user_lists_path(@user), :notice => "List was successfully selected."
+  def show
+    @list = List.find(params[:id])
+    @meanings = @list.meanings
+    @words = words_on_a_list(@meanings)
   end
   
   def new
@@ -36,6 +30,18 @@ class ListsController < ApplicationController
     end
   end
   
+  def select
+    @user = User.find(params[:user_id])
+    set_current_list_id(params[:id].to_i)
+    redirect_to user_lists_path(@user), :notice => "List was successfully selected."
+  end
+  
+  def change
+    @user = User.find(params[:user_id])
+    set_current_list_id(params[:list_id].to_i)
+    redirect_to user_lists_path(@user), :notice => "List was successfully selected."
+  end
+  
   private
   
     def authenticate_current!
@@ -43,7 +49,16 @@ class ListsController < ApplicationController
       redirect_to user_lists_path(current_user), :alert => "You need to sign in as authorized user." unless current_user == @user
     end
     
-    def set_current_list(list_id)
-      session[:list] = List.find(list_id)
+    def set_current_list_id(list_id)
+      session[:list_id] = list_id == 0 ? nil : list_id
+    end
+    
+    def words_on_a_list(meanings)
+      words = []
+      for meaning in meanings
+        word = meaning.word
+        words << word unless words.include?(word)
+      end
+      words
     end
 end

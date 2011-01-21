@@ -8,9 +8,9 @@ Project::Application.routes.draw do
       member do
         get :select
       end
-#       collection do
-#         post :select
-#       end
+      collection do
+        post :change
+      end
     end
   end
   

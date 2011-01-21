@@ -1,9 +1,4 @@
--# %p
--#   = radio_button_tag(:list_id, list.id, current_list == list ? true : false)
--#   = label_tag :list_id, "#{list.name}: #{list.description}"
-
 %p
-  = "#{list.name}: #{list.description}"
-  = link_to "Select", select_user_list_path(list.user, list)
-  - for meaning in list.meanings
-    = meaning.meaning
+  = link_to list.name, user_list_path(list.user, list)
+  = "(#{list.description})"
+  = link_to_unless list_selected?(list.id), "Select", select_user_list_path(list.user, list)
