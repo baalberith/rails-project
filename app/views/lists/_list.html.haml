@@ -1,4 +1,3 @@
 %p
   = link_to list.name, user_list_path(list.user, list)
   = "(#{list.description})"
-  = link_to_unless list_selected?(list.id), "Select", select_user_list_path(list.user, list)

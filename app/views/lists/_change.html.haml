@@ -1,3 +1,4 @@
-= form_tag change_user_lists_path(current_user), :method => 'post', :class => 'list_changing' do
-  = select_tag :list_id, options_for_select( List.all.collect { |list| [list.name, list.id] }, current_list_id ), :include_blank => "", :onchange => "alert('aaa');"
-  = submit_tag "Change"
+(
+= select_tag :list_id, options_for_select( List.find_all_by_user_id(current_user).collect { |list| [list.name, list.id] }, current_list_id ), 
+  :onchange => "$.post('#{change_user_lists_path(current_user)}', {'list_id':this.value} );"
+)

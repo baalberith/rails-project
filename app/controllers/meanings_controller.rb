@@ -44,14 +44,6 @@ class MeaningsController < ApplicationController
       redirect_to words_path, :alert => "You need to sign in as admin user." unless current_user.admin?
     end
     
-    def current_list_id_set?
-      !session[:list_id].nil?
-    end
-    
-    def current_list
-      List.find(session[:list_id])
-    end
-    
     def set_current_list_id!
       redirect_to user_lists_path(current_user), :alert => "Current list not set" unless current_list_id_set?
     end

@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authenticate_current!, :except => [:index]
+  before_filter :authenticate_current!, :except => [:index, :show]
   
   def index
     @user = User.find(params[:user_id])
@@ -24,6 +24,7 @@ class ListsController < ApplicationController
     @list = @user.lists.new(params[:list])
     
     if @list.save
+      set_current_list_id(@list.id)
       redirect_to user_lists_path(@user), :notice => "List was successfully created."
     else
       render :new
@@ -47,10 +48,6 @@ class ListsController < ApplicationController
     def authenticate_current!
       @user = User.find(params[:user_id])
       redirect_to user_lists_path(current_user), :alert => "You need to sign in as authorized user." unless current_user == @user
-    end
-    
-    def set_current_list_id(list_id)
-      session[:list_id] = list_id == 0 ? nil : list_id
     end
     
     def words_on_a_list(meanings)
