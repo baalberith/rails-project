@@ -1,3 +1,8 @@
-.on_the_spot_editing, .list_changing {
+.on_the_spot_editing form {
   display: inline;
 }
+
+.list_changing {
+  display: inline;
+}
+
