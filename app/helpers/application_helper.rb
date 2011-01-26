@@ -1,4 +1,17 @@
 module ApplicationHelper
+  def page_title
+    base_title = "Project"
+    if @page_title.nil?
+      base_title
+    else
+      "#{base_title} | #{@page_title}"
+    end
+  end
+  
+  def logo_tag
+    image_tag "rails.png", :alt => @page_title
+  end
+  
   def admin_signed_in?
     current_user.admin? if user_signed_in?
   end
@@ -13,13 +26,5 @@ module ApplicationHelper
   
   def any_lists?
     current_user.lists.any?
-  end
-  
-  def meanings_of_word_on_a_list(word_meanings, list_meanings)
-    meanings = []
-    for meaning in word_meanings
-      meanings << meaning if list_meanings.include?(meaning)
-    end
-    meanings
   end
 end

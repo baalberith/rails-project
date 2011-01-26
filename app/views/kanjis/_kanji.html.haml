@@ -1,6 +1,6 @@
 %p
   = kanji.kanji
-  = image_tag "kanjis/#{kanji.kanji}.png"
+  = image_tag "kanjis/#{kanji.kanji}.png" if File.exists?("public/images/kanjis/#{kanji.kanji}.png")
   
   %p 
     Meanings

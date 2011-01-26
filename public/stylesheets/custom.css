@@ -1,8 +1,61 @@
-.on_the_spot_editing form {
+body {
+  width: 800px;
+  margin: 15px auto;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+}
+
+h1#logo {
+  float: left;
+  margin: 0;
+}
+
+header#page_header {
+}
+
+header#page_header nav {
+  padding: 5px;
+  float: right;
+}
+
+header#page_header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header#page_header nav ul li {
+  margin: 0 10px 0;
   display: inline;
 }
 
-.list_changing {
-  display: inline;
+div#flash {
+  float: right;
+  clear: right;
 }
 
+div#flash p.notice, div#flash p.alert {
+  margin: 3px 10px 0;
+  padding: 3px 5px;
+}
+
+div#flash p.notice {
+  border: 2px solid #c6d880;
+  background:#e6efc2;color:#264409;
+}
+
+div#flash p.alert {
+  border: 2px solid #fbc2c4;
+  background:#fbe3e4;color:#8a1f11;
+}
+
+section#page {
+  clear: left;
+}
+
+footer#page_footer {
+  text-align: center;
+}
+
+form#list_change {
+  display: inline;
+}

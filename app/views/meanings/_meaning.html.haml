@@ -1,7 +1,4 @@
 %li
-  - if user_signed_in?
-    = on_the_spot_edit meaning, :meaning, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit meaning"
-  - else
-    = meaning.meaning
+  = meaning.meaning
   = link_to "Add to list", add_word_meaning_path(meaning.word, meaning) if current_list_id_set?
   = link_to "Delete meaning", [meaning.word, meaning], :confirm => "Are you sure?", :method => :delete if admin_signed_in?

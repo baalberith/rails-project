@@ -5,9 +5,6 @@ Project::Application.routes.draw do
   
   resources :users do
     resources :lists do
-      member do
-        get :select
-      end
       collection do
         post :change
       end
@@ -19,9 +16,6 @@ Project::Application.routes.draw do
       member do
         get :add
       end
-    end
-    collection do
-      post :update_attribute_on_the_spot
     end
   end
   

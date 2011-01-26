@@ -31,16 +31,10 @@ class ListsController < ApplicationController
     end
   end
   
-  def select
-    @user = User.find(params[:user_id])
-    set_current_list_id(params[:id].to_i)
-    redirect_to user_lists_path(@user), :notice => "List was successfully selected."
-  end
-  
   def change
     @user = User.find(params[:user_id])
     set_current_list_id(params[:list_id].to_i)
-    redirect_to user_lists_path(@user), :notice => "List was successfully selected."
+    redirect_to :back, :notice => "List was successfully changed."
   end
   
   private

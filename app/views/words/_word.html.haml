@@ -4,12 +4,7 @@
       = link_to c, kanji_path(Kanji.find_by_kanji(c))
     - else
       = c
-  (
-  - if user_signed_in?
-    = on_the_spot_edit word, :reading, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit reading"
-  - else
-    = word.reading
-  )
+  = "(#{word.reading})"
 
   %ul
     = render word.meanings

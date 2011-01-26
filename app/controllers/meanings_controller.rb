@@ -1,6 +1,4 @@
 class MeaningsController < ApplicationController
-  can_edit_on_the_spot
-  
   before_filter :authenticate_user!
   before_filter :authenticate_admin!, :only => [:destroy]
   before_filter :set_current_list_id!, :only => [:add]
