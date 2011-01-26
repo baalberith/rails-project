@@ -1,5 +1,5 @@
 (
-= form_tag change_user_lists_path(current_user), :method => 'post', :id => 'list_change' do
+= form_tag change_user_lists_path(current_user), :method => 'post', :id => 'change_lists' do
   = select_tag :list_id, options_for_select( List.find_all_by_user_id(current_user).collect { |list| [list.name, list.id] }, current_list_id )
   = submit_tag "Change"
 )

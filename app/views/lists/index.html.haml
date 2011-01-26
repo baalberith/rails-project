@@ -1,6 +1,7 @@
-%h2 Lists index
-%h3= "user: #{@user.name}"
+%h2 
+  Lists index 
+  %span.smaller= "( #{@user.name} )"
 
 = render @lists
 
-= link_to "New list", new_user_list_path(@user) if current_signed_in?(@user)
+%p= link_to "New list", new_user_list_path(@user) if current_signed_in?(@user)

@@ -17,7 +17,7 @@
       - else
         %li= link_to "Login", new_user_session_path
 
-  %div#flash
+  %aside#flash
     - unless notice.blank?
       %p.notice= notice
     - unless alert.blank?

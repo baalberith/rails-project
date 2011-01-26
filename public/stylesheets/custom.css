@@ -9,7 +9,8 @@ h1#logo {
   margin: 0;
 }
 
-header#page_header {
+h2 span.smaller, h3 span.smaller {
+  font-size: 0.8em;
 }
 
 header#page_header nav {
@@ -28,24 +29,26 @@ header#page_header nav ul li {
   display: inline;
 }
 
-div#flash {
+aside#flash {
   float: right;
   clear: right;
 }
 
-div#flash p.notice, div#flash p.alert {
+aside#flash p.notice, aside#flash p.alert {
   margin: 3px 10px 0;
   padding: 3px 5px;
 }
 
-div#flash p.notice {
+aside#flash p.notice {
   border: 2px solid #c6d880;
-  background:#e6efc2;color:#264409;
+  background: #e6efc2;
+  color: #264409;
 }
 
-div#flash p.alert {
+aside#flash p.alert {
   border: 2px solid #fbc2c4;
-  background:#fbe3e4;color:#8a1f11;
+  background: #fbe3e4;
+  color: #8a1f11;
 }
 
 section#page {
@@ -56,6 +59,25 @@ footer#page_footer {
   text-align: center;
 }
 
-form#list_change {
+form ul {
+  list-style: none;
+  padding: 0;
+  margin: 2px;
+}
+
+form ul li {
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+
+form ul li input, form ul li textarea {
+  display: block;
+}
+
+form ul li input[type=checkbox] {
+  display: inline;
+}
+
+form#change_lists {
   display: inline;
 }

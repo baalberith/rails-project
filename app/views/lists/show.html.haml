@@ -1,8 +1,10 @@
-%h2 Show List
+%h3 
+  Show List
+  %span.smaller= "( #{@list.name} )"
 
 - for word in @words
   %p
-    = "#{word.word} (#{word.reading})"
+    = "#{word.word} ( #{word.reading} )"
     %ul
       - for meaning in meanings_of_word_on_a_list(word.meanings, @meanings) 
         %li= meaning.meaning

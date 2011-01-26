@@ -1,18 +1,16 @@
-%h2 New word
+%h3 New word
 
 = form_for @word do |word_form|
   = render 'shared/errors', :target => @word
 
-  %p
-    = word_form.label :word
-    %br
-    = word_form.text_field :word
+  %ul
+    %li
+      = word_form.label :word
+      = word_form.text_field :word
+    %li
+      = word_form.label :reading
+      = word_form.text_field :reading
 
-  %p
-    = word_form.label :reading
-    %br
-    = word_form.text_field :reading
+    %li= word_form.submit
 
-  %p= word_form.submit
-
-= link_to "Back", words_path
+%p= link_to "Back", words_path

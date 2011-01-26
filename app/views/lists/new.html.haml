@@ -1,16 +1,16 @@
-%h2 New List
+%h3 New List
 
 = form_for [@user, @list] do |f|
   = render 'shared/errors', :target => @list
 
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
+  %ul
+    %li
+      = f.label :name
+      = f.text_field :name
+    %li
+      = f.label :description
+      = f.text_area :description
 
-  %p
-    = f.label :description
-    %br
-    = f.text_area :description
+    %li= f.submit
 
-  %p= f.submit
+%p= link_to "Back", user_lists_path(@user)

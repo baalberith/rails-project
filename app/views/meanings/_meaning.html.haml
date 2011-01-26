@@ -1,4 +1,4 @@
 %li
   = meaning.meaning
-  = link_to "Add to list", add_word_meaning_path(meaning.word, meaning) if current_list_id_set?
+  = link_to "Add to list", add_word_meaning_path(meaning.word, meaning) if current_list_id_set? and not current_list.meanings.include?(meaning)
   = link_to "Delete meaning", [meaning.word, meaning], :confirm => "Are you sure?", :method => :delete if admin_signed_in?
