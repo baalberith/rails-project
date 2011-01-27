@@ -4,11 +4,16 @@
       = link_to c, kanji_path(Kanji.find_by_kanji(c))
     - else
       = c
-  = "(#{word.reading})"
+  - if user_signed_in?
+    (
+    = on_the_spot_edit word, :reading, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit reading"
+    )
+  - else
+    = "(#{word.reading})"
 
   %ul
     = render word.meanings
     
 %p
-  = link_to "Add meaning", new_word_meaning_path(word) if user_signed_in?
-  = link_to "Delete word", word, :confirm => "Are you sure?", :method => :delete if admin_signed_in?
+  = link_to "Add meaning", new_word_meaning_path(word), :class => 'small' if user_signed_in?
+  = link_to "Delete word", word, :class => 'small', :confirm => "Are you sure?", :method => :delete if admin_signed_in?

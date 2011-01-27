@@ -17,6 +17,9 @@ Project::Application.routes.draw do
         get :add
       end
     end
+    collection do
+      post :update_attribute_on_the_spot
+    end
   end
   
   resources :kanjis
