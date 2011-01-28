@@ -1,5 +1,6 @@
-%h2 Words index
+%h2 
+  Words index
+  = "»" if user_signed_in?
+  = link_to "Add word", new_word_path, :class => 'smaller' if user_signed_in?
 
 = render @words
-
-%p= link_to "Add word", new_word_path if user_signed_in?

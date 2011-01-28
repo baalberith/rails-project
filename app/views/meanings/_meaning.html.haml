@@ -1,6 +1,7 @@
 %li
   - if user_signed_in?
     = on_the_spot_edit meaning, :meaning, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit meaning", :style => ""
+    = link_to meaning.meaning, edit_word_meaning_path(meaning.word, meaning), :class => 'hide'
   - else
     = meaning.meaning
   = link_to "Add to list", add_word_meaning_path(meaning.word, meaning), :class => 'smaller' if current_list_id_set? and not current_list.meanings.include?(meaning)

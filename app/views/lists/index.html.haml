@@ -1,7 +1,9 @@
 %h2 
   Lists index 
-  %span.smaller= "( #{@user.name} )"
+  - if current_signed_in?(@user)
+    = "»" if current_signed_in?(@user)
+  - else
+    %span.smaller= "( #{@user.name} )" 
+  = link_to "New list", new_user_list_path(@user), :class => 'smaller' if current_signed_in?(@user)
 
 = render @lists
-
-%p= link_to "New list", new_user_list_path(@user) if current_signed_in?(@user)

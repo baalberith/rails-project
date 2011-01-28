@@ -8,3 +8,5 @@
     %ul
       - for meaning in meanings_of_word_on_a_list(word.meanings, @meanings) 
         %li= meaning.meaning
+
+%p= link_to "« Back", :back

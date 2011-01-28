@@ -4,13 +4,47 @@ body {
   font-family: 'trebuchet ms', helvetica, sans-serif; 
 }
 
-h1#logo {
-  float: left;
-  margin: 0;
+a {
+  color: #205791;
+}
+
+.on_the_spot_editing {
+  display: none;
+}
+
+a:hover {
+  background:#faffbd;
+  color:#514721;
+}
+
+a.small {
+  font-size: 0.9em;
+}
+
+a.smaller {
+  font-size: 0.8em;
 }
 
 h2 span.smaller, h3 span.smaller {
   font-size: 0.8em;
+}
+
+p.word {
+  padding: 3px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+span.on_the_spot_editing {
+  line-height: 2.0em;
+}
+
+header#page_header {
+  
+}
+
+header#page_header a {
+  font-weight: bold;
 }
 
 header#page_header nav {
@@ -29,13 +63,23 @@ header#page_header nav ul li {
   display: inline;
 }
 
+h1#logo {
+  float: left;
+  margin: 0;
+}
+
+h1#logo img {
+  border-width: 0;
+}
+
 aside#flash {
   float: right;
   clear: right;
 }
 
 aside#flash p.notice, aside#flash p.alert {
-  font: bold 84% 'trebuchet ms', helvetica, sans-serif; 
+  font-size: 0.9em;
+  font-weight: bold;
   margin: 3px 10px 0;
   padding: 3px 5px;
 }
@@ -53,7 +97,8 @@ aside#flash p.alert {
 }
 
 section#page {
-  clear: left;
+  display: block;
+  clear: both;
 }
 
 footer#page_footer {
@@ -87,35 +132,16 @@ form#change_lists {
   display: inline;
 }
 
-.on_the_spot_editing span:hover {
+span.on_the_spot_editing:hover {
   background:#faffbd !important;
   color:#514721 !important;
 }
 
 button, input, select, textarea {
-  font: bold 84% 'trebuchet ms', helvetica, sans-serif; 
+  font-weight: bold;
   border: 2px solid #92cae4;
   background: #d5edf8;
   color: #205791;
-}
-
-a {
-  color: #205791;
-}
-
-header#page_header a {
-  font-weight: bold;
-}
-
-a:hover {
-  background:#faffbd;
-  color:#514721;
-}
-
-a.small {
-  font-size: 0.9em;
-}
-
-a.smaller {
-  font-size: 0.8em;
+  margin: 1px 2px;
+  padding: 1px 3px;
 }

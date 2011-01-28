@@ -27,6 +27,12 @@ class WordsController < ApplicationController
     end
   end
   
+  def edit
+  end
+  
+  def update
+  end
+  
   def destroy
     @word = Word.destroy(params[:id])
     redirect_to words_path, :notice => "Word was successfully deleted."

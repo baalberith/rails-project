@@ -21,6 +21,12 @@ class MeaningsController < ApplicationController
     end
   end
   
+  def edit
+  end
+  
+  def update
+  end
+  
   def destroy
     @meaning = Meaning.destroy(params[:id])
     @word = Word.find(params[:word_id])

@@ -1,4 +1,4 @@
-%p
+%p.word
   - word.word.each_char do |c|
     - if KLookup::Lookup::Kanji.exist?(c)
       = link_to c, kanji_path(Kanji.find_by_kanji(c))
@@ -7,6 +7,7 @@
   - if user_signed_in?
     (
     = on_the_spot_edit word, :reading, :ok_text => "✔", :cancel_text => "✗", :toolpit => "Edit reading"
+    = link_to word.reading, edit_word_path(word), :class => 'hide'
     )
   - else
     = "(#{word.reading})"
@@ -17,3 +18,4 @@
 %p
   = link_to "Add meaning", new_word_meaning_path(word), :class => 'small' if user_signed_in?
   = link_to "Delete word", word, :class => 'small', :confirm => "Are you sure?", :method => :delete if admin_signed_in?
+
