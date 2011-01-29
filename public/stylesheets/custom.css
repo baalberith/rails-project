@@ -32,7 +32,7 @@ a.smaller {
   padding: 5px;
 }
 
-form#word_search {
+form#word_search, form#kanji_search {
   display: inline;
 }
 
@@ -42,6 +42,12 @@ h2 span.smaller, h3 span.smaller {
 
 p.word {
   padding: 3px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+p.list {
+  padding: 5px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
@@ -161,7 +167,7 @@ div.pagination {
 
 a.kanji {
   font-size: 2.5em;
-  padding: 2px 6px;
+  padding: 2px 8px;
   text-decoration: none;
 }
 

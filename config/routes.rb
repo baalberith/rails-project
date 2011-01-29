@@ -24,8 +24,6 @@ Project::Application.routes.draw do
   
   resources :kanjis
   
-  resources :list_meaning_links
-  
   root :to => 'pages#home'
   
   # The priority is based upon order of creation:

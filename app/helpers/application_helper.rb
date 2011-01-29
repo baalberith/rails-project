@@ -20,10 +20,6 @@ module ApplicationHelper
     current_user == user if user_signed_in?
   end
   
-  def current_list_id
-    session[:list_id]
-  end
-  
   def any_lists?
     current_user.lists.any?
   end

@@ -11,18 +11,23 @@
     %td Meanings:
     %td= @kanji_obj.meaning.join(", ")
   %tr
-    %td Radicals:
-    %td= @kanji_obj.radical.join(", ")
+    - if @radicals.any?
+      %td Radicals:
+      %td
+        - for radical in @radicals
+          - if radical.is_a?(Kanji)
+            = link_to radical.kanji, radical
+          - else
+            = radical
   %tr
     %td Readings:
-    %td
-      - for readings in @kanji_obj.reading
-        %p= readings.join(" | ")
+    %td= @kanji_obj.reading.reading.join(" | ")
 
-  %tr
-    %td Examples:
-    %td
-      - for word in @kanji.words
-        = link_to word.word, word_path(word)
+  - if @examples.any?
+    %tr
+      %td Examples:
+      %td
+        - for word in @examples
+          = link_to word.word, word_path(word)
 
 %p= link_to "« Back", :back

@@ -3,11 +3,12 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_current_list_id!
   
-  helper_method :current_list, :current_list_id_set?
+  helper_method :current_list, :current_list_id, :current_list_id_set?
   
   protected
   
     def set_current_list_id!
+      # session[:list_id] = nil
       if session[:list_id].nil? 
         if user_signed_in?
           lists = current_user.lists
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
     
     def current_list
       List.find(session[:list_id])
+    end
+    
+    def current_list_id
+      session[:list_id]
     end
     
     def current_list_id_set?

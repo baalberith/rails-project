@@ -1,4 +1,12 @@
-%h2 Kanjis index
+%h2 
+  Kanjis index
+  (
+  = form_for @search, :url => kanjis_path, :html => { :method => :get, :class => 'smaller' } do |f|
+    = f.text_field :kanji_contains
+    = f.submit "Search"
+  )
 
 - for kanji in @kanjis
   = link_to kanji.kanji, kanji, :class => 'kanji'
+
+%p= will_paginate @kanjis

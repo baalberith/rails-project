@@ -38,8 +38,8 @@ class MeaningsController < ApplicationController
   end
   
   def destroy
-    @meaning = Meaning.destroy(params[:id])
     @word = Word.find(params[:word_id])
+    @meaning = @word.meanings.destroy(params[:id])    
     
     redirect_to words_path, :notice => "Meaning was successfully deleted."
   end

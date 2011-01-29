@@ -31,6 +31,15 @@ class ListsController < ApplicationController
     end
   end
   
+  def destroy
+    @user = User.find(params[:user_id])
+    @list = List.find(params[:id])
+    current_list_reset(@list)
+    @user.lists.destroy(params[:id])
+    
+    redirect_to user_lists_path(@user), :notice => "List was successfully deleted."
+  end
+  
   def change
     @user = User.find(params[:user_id])
     set_current_list_id(params[:list_id].to_i)
@@ -42,6 +51,10 @@ class ListsController < ApplicationController
     def authenticate_current!
       @user = User.find(params[:user_id])
       redirect_to user_lists_path(current_user), :alert => "You need to sign in as authorized user." unless current_user == @user
+    end
+    
+    def current_list_reset(list)
+      session[:list_id] = nil if current_list_id == list.id
     end
     
     def words_on_a_list(meanings)

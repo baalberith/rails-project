@@ -3,6 +3,6 @@
   - if current_signed_in?(@user)
   - else
     %span.smaller= "( #{@user.name} )" 
-  %span.float_right= link_to "New list", new_user_list_path(@user), :class => 'smaller' if current_signed_in?(@user)
+  %span.float_right= link_to "Add list", new_user_list_path(@user), :class => 'smaller' if current_signed_in?(@user)
 
 = render @lists
