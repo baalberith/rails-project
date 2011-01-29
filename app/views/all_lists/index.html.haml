@@ -1,0 +1,14 @@
+%h2 
+  All lists
+  (
+  = form_for @search, :url => all_lists_path, :html => { :method => :get, :class => 'smaller' } do |f|
+    = f.text_field :name_or_description_or_user_name_contains
+    = f.submit "Search"
+  )
+
+- for list in @lists
+  %p.list
+    = link_to list.name, user_list_path(list.user, list)
+    = "( #{list.description} )"
+    %span.float_right= list.user.name
+

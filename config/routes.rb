@@ -15,6 +15,7 @@ Project::Application.routes.draw do
     resources :meanings do
       member do
         get :add
+        get :delete
       end
     end
     collection do
@@ -23,6 +24,8 @@ Project::Application.routes.draw do
   end
   
   resources :kanjis
+  
+  resources :all_lists
   
   root :to => 'pages#home'
   

@@ -1,0 +1,16 @@
+%h3 Edit List
+
+= form_for [@user, @list] do |f|
+  = render 'shared/errors', :target => @list
+
+  %ul
+    %li
+      = f.label :name
+      = f.text_field :name
+    %li
+      = f.label :description
+      = f.text_area :description
+
+    %li= f.submit
+
+%p= link_to "Back", user_lists_path(@user)

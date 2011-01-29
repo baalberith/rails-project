@@ -1,6 +1,11 @@
 %h2 
   Lists index 
   - if current_signed_in?(@user)
+    (
+    = form_for @search, :url => user_lists_path(@user), :html => { :method => :get, :class => 'smaller' } do |f|
+      = f.text_field :name_or_description_contains
+      = f.submit "Search"
+    )
   - else
     %span.smaller= "( #{@user.name} )" 
   %span.float_right= link_to "Add list", new_user_list_path(@user), :class => 'smaller' if current_signed_in?(@user)

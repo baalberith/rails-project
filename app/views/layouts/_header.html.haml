@@ -6,6 +6,7 @@
       %li= link_to "About", about_path
       %li= link_to "Words", words_path
       %li= link_to "Kanjis", kanjis_path
+      %li= link_to "Lists", all_lists_path
       - if user_signed_in?  
         %li
           = link_to "My Lists", user_lists_path(current_user)

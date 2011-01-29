@@ -3,4 +3,6 @@
   = "( #{list.description} )"
 
   %span.float_right
-    = link_to "Delete list", [list.user, list], :class => 'smaller', :confirm => "Are you sure?", :method => :delete if current_signed_in?(@user)
+    - if current_signed_in?(@user)
+      = link_to "Edit", edit_user_list_path(list.user, list), :class => 'smaller'
+      = link_to "Delete list", [list.user, list], :class => 'smaller', :confirm => "Are you sure?", :method => :delete

@@ -32,7 +32,7 @@ a.smaller {
   padding: 5px;
 }
 
-form#word_search, form#kanji_search {
+form#word_search, form#kanji_search, form#list_search {
   display: inline;
 }
 
@@ -72,7 +72,7 @@ header#page_header nav ul {
 }
 
 header#page_header nav ul li {
-  margin: 0 10px 0;
+  margin: 0 5px 0;
   display: inline;
 }
 

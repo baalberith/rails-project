@@ -5,5 +5,9 @@
   - else
     = meaning.meaning
   %span.float_right
-    = link_to "Add to list", add_word_meaning_path(meaning.word, meaning), :class => 'smaller' if current_list_id_set? and not current_list.meanings.include?(meaning)
+    - if current_list_id_set? 
+      - if current_list.meanings.include?(meaning)
+        = link_to "Delete from list", delete_word_meaning_path(meaning.word, meaning), :class => 'smaller'
+      - else
+        = link_to "Add to list", add_word_meaning_path(meaning.word, meaning), :class => 'smaller'
     = link_to "Delete meaning", [meaning.word, meaning], :class => 'smaller', :confirm => "Are you sure?", :method => :delete if admin_signed_in?

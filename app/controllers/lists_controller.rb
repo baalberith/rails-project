@@ -1,10 +1,11 @@
 class ListsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :authenticate_current!, :except => [:index, :show]
   
   def index
     @user = User.find(params[:user_id])
-    @lists = @user.lists.all
+    @search = @user.lists.search(params[:search])
+    @lists = @search.all.uniq.paginate(:per_page => 18, :page => params[:page])
   end
   
   def show
@@ -15,7 +16,6 @@ class ListsController < ApplicationController
   
   def new
     @user = User.find(params[:user_id])
-    session[:list]
     @list = @user.lists.new
   end
   
@@ -28,6 +28,22 @@ class ListsController < ApplicationController
       redirect_to user_lists_path(@user), :notice => "List was successfully created."
     else
       render :new
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:user_id])
+    @list = List.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:user_id])
+    @list = List.find(params[:id])
+    
+    if @list.update_attributes(params[:list])
+      redirect_to user_lists_path(@user), :notice => "List was successfully updated."
+    else
+      render :edit
     end
   end
   

@@ -3,7 +3,7 @@ class MeaningsController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :authenticate_admin!, :only => [:destroy]
-  before_filter :set_current_list_id!, :only => [:add]
+  before_filter :set_current_list_id!, :only => [:add, :delete]
   
   def new
     @word = Word.find(params[:word_id])
@@ -48,10 +48,17 @@ class MeaningsController < ApplicationController
     list, meaning_id = current_list, params[:id].to_i
     @link = list.list_meaning_links.create(:meaning_id => meaning_id)
     if @link.save
-      redirect_to words_path, :notice => "Meaning was successfully added."
+      redirect_to words_path, :notice => "Meaning was successfully added to list."
     else
       redirect_to words_path, :alert => "Meaning already on the list."
     end
+  end
+  
+  def delete
+    list, meaning_id = current_list, params[:id].to_i
+    @link = list.list_meaning_links.find_by_meaning_id(meaning_id)
+    @link.destroy
+    redirect_to words_path, :notice => "Meaning was successfully deleted form list."
   end
   
   private
