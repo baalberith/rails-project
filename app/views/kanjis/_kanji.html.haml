@@ -1,15 +1,23 @@
-%p
-  = kanji.kanji
-  = image_tag "kanjis/#{kanji.kanji}.png" if File.exists?("public/images/kanjis/#{kanji.kanji}.png")
+%table
+  %tr
+    %td
+      %span.kanji= kanji.kanji
+      %span.strokes= "strokes: #{KLookup::Lookup::Kanji.new(kanji.kanji).stroke_count}"
+    %td= image_tag "kanjis/#{kanji.kanji}.png" if File.exists?("public/images/kanjis/#{kanji.kanji}.png")
   
-  %p 
-    Meanings
-    %ul
-      - for meaning in KLookup::Lookup::Kanji.new(kanji.kanji).meaning
-        %li= meaning
-
-  %p 
-    Examples
-    %ol
+  %tr
+    %td Meanings:
+    %td= KLookup::Lookup::Kanji.new(kanji.kanji).meaning.join(", ")
+  %tr
+    %td Radicals:
+    %td= KLookup::Lookup::Kanji.new(kanji.kanji).radical.join(", ")
+  %tr
+    %td Readings:
+    %td
+      - for readings in KLookup::Lookup::Kanji.new(kanji.kanji).reading
+        = readings.join(" | ")
+  %tr
+    %td Examples:
+    %td
       - for word in kanji.words
-        %li= link_to word.word, word_path(word)
+        = link_to word.word, word_path(word)

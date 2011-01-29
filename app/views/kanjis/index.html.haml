@@ -1,3 +1,4 @@
 %h2 Kanjis index
 
-=render @kanjis
+- for kanji in @kanjis
+  = link_to kanji.kanji, kanji, :class => 'kanji'

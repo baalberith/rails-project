@@ -1,12 +1,11 @@
-%h3 New word
+%h3 
+  Edit word reading
+  %span.smaller= "[ #{@word.word} ( #{@word.reading} ) ]"
 
 = form_for @word do |f|
   = render 'shared/errors', :target => @word
 
   %ul
-    %li
-      = f.label :word
-      = f.text_field :word
     %li
       = f.label :reading
       = f.text_field :reading

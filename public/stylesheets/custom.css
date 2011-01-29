@@ -6,6 +6,7 @@ body {
 
 a {
   color: #205791;
+  padding: 2px 0;
 }
 
 .on_the_spot_editing {
@@ -13,16 +14,26 @@ a {
 }
 
 a:hover {
-  background:#faffbd;
-  color:#514721;
+  background: #faffbd;
+  color: #514721;
 }
 
 a.small {
   font-size: 0.9em;
 }
 
+span.float_right {
+  float: right;
+  clear: right;
+}
+
 a.smaller {
   font-size: 0.8em;
+  padding: 5px;
+}
+
+form#word_search {
+  display: inline;
 }
 
 h2 span.smaller, h3 span.smaller {
@@ -37,10 +48,6 @@ p.word {
 
 span.on_the_spot_editing {
   line-height: 2.0em;
-}
-
-header#page_header {
-  
 }
 
 header#page_header a {
@@ -97,6 +104,7 @@ aside#flash p.alert {
 }
 
 section#page {
+  margin-right: 8px;
   display: block;
   clear: both;
 }
@@ -133,6 +141,7 @@ form#change_lists {
 }
 
 span.on_the_spot_editing:hover {
+  padding: 3px 0 !important;
   background:#faffbd !important;
   color:#514721 !important;
 }
@@ -144,4 +153,30 @@ button, input, select, textarea {
   color: #205791;
   margin: 1px 2px;
   padding: 1px 3px;
+}
+
+div.pagination {
+  text-align: center;
+}
+
+a.kanji {
+  font-size: 2.5em;
+  padding: 2px 6px;
+  text-decoration: none;
+}
+
+span.kanji {
+  font-size: 2.5em;
+  display: block;
+  text-align: center;
+}
+
+span.strokes {
+  font-size: 0.5em;
+  display: block;
+  text-align: center;
+}
+
+td {
+  padding: 6px;
 }

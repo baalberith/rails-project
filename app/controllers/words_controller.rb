@@ -5,7 +5,8 @@ class WordsController < ApplicationController
   before_filter :authenticate_admin!, :only => [:destroy]
   
   def index
-    @words = Word.all
+    @search = Word.search(params[:search])
+    @words = @search.all.uniq.paginate(:per_page => 6, :page => params[:page])
   end
   
   def show
@@ -28,9 +29,17 @@ class WordsController < ApplicationController
   end
   
   def edit
+    @word = Word.find(params[:id])
   end
   
   def update
+    @word = Word.find(params[:id])
+
+    if @word.update_attributes(params[:word])
+      redirect_to words_path, :notice => "Word was successfully updated."
+    else
+      render :edit
+    end
   end
   
   def destroy

@@ -1,0 +1,15 @@
+%h3 
+  Edit word meaning
+  %span.smaller= "[ #{@word.word} : #{@meaning.meaning} ]"
+
+= form_for([@word, @meaning]) do |f|
+  = render 'shared/errors', :target => @meaning
+
+  %ul
+    %li
+      = f.label :meaning
+      = f.text_field :meaning
+
+    %li= f.submit
+
+%p= link_to "« Back", words_path

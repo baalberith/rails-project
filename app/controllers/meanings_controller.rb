@@ -22,9 +22,19 @@ class MeaningsController < ApplicationController
   end
   
   def edit
+    @word = Word.find(params[:word_id])
+    @meaning = Meaning.find(params[:id])
   end
   
   def update
+    @word = Word.find(params[:word_id])
+    @meaning = Meaning.find(params[:id])
+
+    if @meaning.update_attributes(params[:meaning])
+      redirect_to words_path, :notice => "Meaning was successfully updated."
+    else
+      render :edit
+    end
   end
   
   def destroy

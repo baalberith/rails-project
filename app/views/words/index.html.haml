@@ -1,6 +1,12 @@
 %h2 
   Words index
-  = "»" if user_signed_in?
-  = link_to "Add word", new_word_path, :class => 'smaller' if user_signed_in?
+  (
+  = form_for @search, :url => words_path, :html => { :method => :get, :class => 'smaller' } do |f|
+    = f.text_field :word_or_reading_or_meanings_meaning_contains
+    = f.submit
+  )
+  %span.float_right= link_to "Add word", new_word_path, :class => 'smaller' if user_signed_in?
 
 = render @words
+
+= will_paginate @words
