@@ -180,3 +180,7 @@ span.strokes {
 td {
   padding: 6px;
 }
+
+table p {
+  margin: 0;
+}

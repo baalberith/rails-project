@@ -1,5 +1,28 @@
 %h3 Show Kanji
 
-= render @kanji
+%table
+  %tr
+    %td
+      %span.kanji= @kanji.kanji
+      %span.strokes= "strokes: #{@kanji_obj.stroke_count}"
+    %td= image_tag "kanjis/#{@kanji.kanji}.png" if File.exists?("public/images/kanjis/#{@kanji.kanji}.png")
+  
+  %tr
+    %td Meanings:
+    %td= @kanji_obj.meaning.join(", ")
+  %tr
+    %td Radicals:
+    %td= @kanji_obj.radical.join(", ")
+  %tr
+    %td Readings:
+    %td
+      - for readings in @kanji_obj.reading
+        %p= readings.join(" | ")
+
+  %tr
+    %td Examples:
+    %td
+      - for word in @kanji.words
+        = link_to word.word, word_path(word)
 
 %p= link_to "« Back", :back

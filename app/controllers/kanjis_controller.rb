@@ -7,5 +7,6 @@ class KanjisController < ApplicationController
   
   def show
     @kanji = Kanji.find(params[:id])
+    @kanji_obj = KLookup::Lookup::Kanji.new(@kanji.kanji)
   end
 end

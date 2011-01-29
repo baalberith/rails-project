@@ -57,7 +57,17 @@ class WordsController < ApplicationController
       word.word.each_char do |c|
         if KLookup::Lookup::Kanji.exist?(c)
           kanji = word.kanjis.new(:kanji => c)
-          unless kanji.save
+          if kanji.save
+            kanji_obj = KLookup::Lookup::Kanji.new(kanji.kanji)
+            kanji_obj.radical.each do |r|
+              if KLookup::Lookup::Kanji.exist?(r)
+                radical = Kanji.new(:kanji => r)
+                unless radical.save
+                  # do nothing
+                end
+              end
+            end
+          else
             kanji = Kanji.find_by_kanji(c)
           end
           word.kanji_word_links.create(:kanji_id => kanji.id)
