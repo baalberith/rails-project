@@ -2,18 +2,21 @@ class ListsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
   before_filter :authenticate_current!, :except => [:index, :show]
   
+  # lists user words lists
   def index
     @user = User.find(params[:user_id])
     @search = @user.lists.search(params[:search])
     @lists = @search.all.uniq.paginate(:per_page => 18, :page => params[:page])
   end
   
+  # show words list
   def show
     @list = List.find(params[:id])
     @meanings = @list.meanings
     @words = words_on_a_list(@meanings)
   end
   
+  # creates new words list
   def new
     @user = User.find(params[:user_id])
     @list = @user.lists.new
@@ -31,6 +34,7 @@ class ListsController < ApplicationController
     end
   end
   
+  #edits selected words list
   def edit
     @user = User.find(params[:user_id])
     @list = List.find(params[:id])
@@ -47,6 +51,7 @@ class ListsController < ApplicationController
     end
   end
   
+  # deletes words list
   def destroy
     @user = User.find(params[:user_id])
     @list = List.find(params[:id])
@@ -56,6 +61,7 @@ class ListsController < ApplicationController
     redirect_to user_lists_path(@user), :notice => "List was successfully deleted."
   end
   
+  # change current 
   def change
     @user = User.find(params[:user_id])
     set_current_list_id(params[:list_id].to_i)
@@ -64,15 +70,18 @@ class ListsController < ApplicationController
   
   private
   
+    # checks whether current user is authenticated
     def authenticate_current!
       @user = User.find(params[:user_id])
       redirect_to user_lists_path(current_user), :alert => "You need to sign in as authorized user." unless current_user == @user
     end
     
+    # sets session[:list_id] to nil if current list is deleted
     def current_list_reset(list)
       session[:list_id] = nil if current_list_id == list.id
     end
     
+    # makes words list of words with meanings on list
     def words_on_a_list(meanings)
       words = []
       for meaning in meanings

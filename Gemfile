@@ -40,4 +40,10 @@ gem 'meta_search'
 
 group :development do
   gem 'annotate-models'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'webrat'
 end

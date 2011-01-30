@@ -1,4 +1,5 @@
 module ListsHelper
+  # makes meanings list of word on list
   def meanings_of_word_on_a_list(word_meanings, list_meanings)
     meanings = []
     for meaning in word_meanings

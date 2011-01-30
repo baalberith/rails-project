@@ -5,6 +5,7 @@ class MeaningsController < ApplicationController
   before_filter :authenticate_admin!, :only => [:destroy]
   before_filter :set_current_list_id!, :only => [:add, :delete]
   
+  # creates new words meaning
   def new
     @word = Word.find(params[:word_id])
     @meaning = @word.meanings.new
@@ -21,6 +22,7 @@ class MeaningsController < ApplicationController
     end
   end
   
+  # edit words meaning
   def edit
     @word = Word.find(params[:word_id])
     @meaning = Meaning.find(params[:id])
@@ -37,6 +39,7 @@ class MeaningsController < ApplicationController
     end
   end
   
+  # deletes meaning
   def destroy
     @word = Word.find(params[:word_id])
     @meaning = @word.meanings.destroy(params[:id])    
@@ -44,6 +47,7 @@ class MeaningsController < ApplicationController
     redirect_to words_path, :notice => "Meaning was successfully deleted."
   end
   
+  # adds meaning to selected words list
   def add
     list, meaning_id = current_list, params[:id].to_i
     @link = list.list_meaning_links.create(:meaning_id => meaning_id)
@@ -54,6 +58,7 @@ class MeaningsController < ApplicationController
     end
   end
   
+  # deletes meaning form selected list
   def delete
     list, meaning_id = current_list, params[:id].to_i
     @link = list.list_meaning_links.find_by_meaning_id(meaning_id)
@@ -63,10 +68,12 @@ class MeaningsController < ApplicationController
   
   private
   
+    # checks whether admin user is authenticated
     def authenticate_admin!
       redirect_to words_path, :alert => "You need to sign in as admin user." unless current_user.admin?
     end
     
+    # checks whether current list id is set
     def set_current_list_id!
       redirect_to user_lists_path(current_user), :alert => "Current list not set" unless current_list_id_set?
     end

@@ -4,15 +4,18 @@ class WordsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :authenticate_admin!, :only => [:destroy]
   
+  # lists all words
   def index
     @search = Word.search(params[:search])
     @words = @search.all.uniq.paginate(:per_page => 6, :page => params[:page])
   end
   
+  # shows selected word
   def show
     @word = Word.find(params[:id])
   end
   
+  # adds new word
   def new
     @word = Word.new
   end
@@ -28,6 +31,7 @@ class WordsController < ApplicationController
     end
   end
   
+  # edits selected word
   def edit
     @word = Word.find(params[:id])
   end
@@ -42,6 +46,7 @@ class WordsController < ApplicationController
     end
   end
   
+  # deletes word
   def destroy
     @word = Word.destroy(params[:id])
     redirect_to words_path, :notice => "Word was successfully deleted."
@@ -49,10 +54,12 @@ class WordsController < ApplicationController
   
   private
   
+    # checks whether admin user is authenticated
     def authenticate_admin!
       redirect_to words_path, :alert => "You need to sign in as admin user." unless current_user.admin?
     end
     
+    # creates words kanjis and links it to word
     def create_word_kanjis(word)
       word.word.each_char do |c|
         if KLookup::Lookup::Kanji.exist?(c)
@@ -67,15 +74,15 @@ class WordsController < ApplicationController
       end
     end
     
-    def create_kanji_radicals(kanji)
-      kanji_obj = KLookup::Lookup::Kanji.new(kanji.kanji)
-      kanji_obj.radical.each do |r|
-        if KLookup::Lookup::Kanji.exist?(r)
-          radical = Kanji.new(:kanji => r)
-          unless radical.save
-            # do nothing
-          end
-        end
-      end
-    end
+    # def create_kanji_radicals(kanji)
+    #   kanji_obj = KLookup::Lookup::Kanji.new(kanji.kanji)
+    #   kanji_obj.radical.each do |r|
+    #     if KLookup::Lookup::Kanji.exist?(r)
+    #       radical = Kanji.new(:kanji => r)
+    #       unless radical.save
+    #         # do nothing
+    #       end
+    #     end
+    #   end
+    # end
 end

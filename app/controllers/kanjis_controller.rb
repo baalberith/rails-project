@@ -1,11 +1,13 @@
 # encoding: UTF-8
 
 class KanjisController < ApplicationController
+  # lists all kanjis
   def index
     @search = Kanji.search(params[:search])
     @kanjis = @search.all.paginate(:per_page => 169, :page => params[:page])
   end
   
+  # shows all details of selected kanji
   def show
     @kanji = Kanji.find(params[:id])
     @kanji_obj = KLookup::Lookup::Kanji.new(@kanji.kanji)
@@ -14,7 +16,8 @@ class KanjisController < ApplicationController
   end
   
   private
-  
+    
+    # makes list of kanji radicals
     def kanji_radicals(kanji_obj)
       radicals = []
       kanji_obj.radical.each do |r|
