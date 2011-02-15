@@ -10,4 +10,6 @@
 
     %li= f.submit
 
-%p= link_to "« Back", words_path
+%p
+  = link_to "« Back", words_path
+  = link_to "Add word", new_word_path if user_signed_in?
