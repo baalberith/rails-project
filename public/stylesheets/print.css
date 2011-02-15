@@ -1,0 +1,15 @@
+header#page_header {
+  display: none;
+}
+
+footer#page_footer {
+  display: none;
+}
+
+#print_list a {
+  display: none;
+}
+
+#print_list ul {
+  list-style: none;
+}

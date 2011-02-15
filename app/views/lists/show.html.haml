@@ -1,12 +1,16 @@
-%h3 
-  Show List
-  %span.smaller= "( #{@list.name} )"
+%div#print_list
 
-- for word in @words
+  %h3 
+    Show List
+    %span.smaller= "( #{@list.name} )"
+
+  - for word in @words
+    %p
+      = "#{word.word} ( #{word.reading} )"
+      %ul
+        - for meaning in meanings_of_word_on_a_list(word.meanings, @meanings) 
+          %li= meaning.meaning
+
   %p
-    = "#{word.word} ( #{word.reading} )"
-    %ul
-      - for meaning in meanings_of_word_on_a_list(word.meanings, @meanings) 
-        %li= meaning.meaning
-
-%p= link_to "« Back", :back
+    = link_to "« Back", :back
+    = link_to_function "Print", "javascript:print()"
